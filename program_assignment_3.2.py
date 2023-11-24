@@ -1,8 +1,6 @@
 from tkinter import *
-from tkinter import Tk, Frame, Label, Entry, Button, Canvas
 from PIL import Image, ImageTk
 from tkinter import messagebox
-from art import *
 
 class Window:
     def __init__(self, master):
@@ -85,6 +83,12 @@ class Window:
         def calculate_and_display():
             money = float(entry_money.get())
             apple_price = float(entry_price.get())
+
+            # Input User limited to Price 25 or 30 
+            if apple_price not in [25.0, 30.0]:
+                messagebox.showerror("Error", "Please enter a valid price: 25 or 30")
+                return
+
             max_apples = money // apple_price
             remaining_money = money % apple_price
             messagebox.showinfo("Results", f"Maximum apples you can buy: {max_apples}\nRemaining money: {remaining_money}\n\nThank you for your purchase.")
